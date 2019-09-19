@@ -15,8 +15,29 @@ app.get('/shuffle', async (req,res)=>{
         letterData[j] = letterData[i]
         letterData[i]= temp;
     }
-    res.send(letterData);
+
+
+    // Testing version for dfs
+    let n =0;
+    let c =1;
+    let nodeArr=[[],[]];
+    for(let i = 0; i<letterData.length; i++){
+
+        
+        console.log(i%4);
+        if(!i%4){
+            console.log("this is n:"+n + " this is c :"+c+ "and this is letter"+letterData[i])
+            nodeArr[n][c] = letterData[i];
+            c++;
+        }else{
+            n = letterData.length/4
+            c=0;
+            nodeArr[n][c]= letterData[i]
+        }
+        n++;
+    }
 })
+
 // Server Port following by env file setting
 // or use server port as 5000
 const PORT = process.env.PORT || 5000;
